@@ -25,17 +25,20 @@ const routes: RouteRecordRaw[] = [
         name: 'emailConfirmation',
         component: () => import('pages/EmailConfirmationPage.vue'),
       },
+    ],
+  },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    // children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
       {
         path: 'me',
         name: 'me',
         component: () => import('pages/MePage.vue'),
       },
     ],
-  },
-  {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    meta: { requiresAuth: true },
   },
 
   // Always leave this as last one,

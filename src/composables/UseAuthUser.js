@@ -52,6 +52,10 @@ export default function useAuthUser() {
     }
   };
 
+  const isLoggedIn = () => {
+    return user.value !== null;
+  };
+
   fetchUser();
 
   return {
@@ -61,5 +65,6 @@ export default function useAuthUser() {
     signUp,
     signOut,
     sendPasswordRecoveryEmail,
+    isLoggedIn,
   };
 }

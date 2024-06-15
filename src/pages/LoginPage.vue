@@ -1,7 +1,7 @@
 <template>
   <q-page class="padding">
     <q-form class="row justify-center" @submit.prevent="handleSubmit">
-      <p class="col-12 text-h5 text-center">Login</p>
+      <p class="col-12 text-h5 text-center q-mt-md">Login</p>
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-md">
         <q-input v-model="form.email" label="Email" />
         <q-input v-model="form.password" label="Password" type="password" />
@@ -48,7 +48,7 @@ const handleSubmit = async () => {
       throw new Error('Please fill all fields');
     }
     await signIn(form.value);
-    router.push({ name: 'HomePage' });
+    router.replace({ name: 'HomePage' });
   } catch (error: any) {
     alert(error.message);
   }
