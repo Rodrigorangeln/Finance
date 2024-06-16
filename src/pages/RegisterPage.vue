@@ -41,7 +41,7 @@ const handleRegister = async () => {
     }
     await signUp(form.value);
     router.push({
-      name: 'email-confirmation',
+      name: 'emailConfirmation',
       query: { email: form.value.email },
     });
   } catch (error: any) {

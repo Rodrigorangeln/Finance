@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import useSupabase from 'src/boot/supabase';
 
 const user = ref(null);
@@ -7,7 +7,9 @@ export default function useAuthUser() {
   const { supabase } = useSupabase();
 
   const fetchUser = async () => {
-    const session = supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     user.value = session?.user ?? null;
   };
 
@@ -52,11 +54,13 @@ export default function useAuthUser() {
     }
   };
 
-  const isLoggedIn = () => {
-    return user.value !== null;
-  };
+  const isLoggedIn = () => user.value !== null;
+  console.log('user', user.value);
 
-  fetchUser();
+  onMounted(() => {
+    fetchUser();
+    console.log('user', user.value);
+  });
 
   return {
     user,

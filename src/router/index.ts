@@ -37,10 +37,12 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach((to) => {
     const { isLoggedIn } = useAuthUser();
+    // console.log('to', to);
+    console.log('isLoggedIn()', isLoggedIn());
     if (
       to.meta.requiresAuth &&
-      !isLoggedIn &&
-      !Object.keys(to.query).includes('token')
+      !isLoggedIn()
+      // !Object.keys(to.query).includes('token')
     ) {
       return '/login';
     }

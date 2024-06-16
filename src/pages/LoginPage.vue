@@ -48,7 +48,7 @@ const handleSubmit = async () => {
       throw new Error('Please fill all fields');
     }
     await signIn(form.value);
-    router.replace({ name: 'HomePage' });
+    router.replace({ name: 'me' });
   } catch (error: any) {
     alert(error.message);
   }

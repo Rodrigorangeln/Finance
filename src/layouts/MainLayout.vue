@@ -66,7 +66,7 @@ const handleLogout = async () => {
   }).onOk(async () => {
     try {
       await signOut();
-      router.replace({ name: 'LoginPage' });
+      router.replace({ name: 'login' });
     } catch (error: any) {
       alert(error.message);
     }
