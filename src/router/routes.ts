@@ -25,6 +25,16 @@ const routes: RouteRecordRaw[] = [
         name: 'emailConfirmation',
         component: () => import('pages/EmailConfirmationPage.vue'),
       },
+      {
+        path: 'forgot-password',
+        name: 'forgot-password',
+        component: () => import('pages/ForgotPasswordPage.vue'),
+      },
+      {
+        path: 'reset-password',
+        name: 'reset-password',
+        component: () => import('pages/ResetPasswordPage.vue'),
+      },
     ],
   },
   {

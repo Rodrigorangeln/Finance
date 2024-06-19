@@ -24,6 +24,15 @@
             to="/register"
           />
         </div>
+        <div>
+          <q-btn
+            label="Forgot password"
+            color="primary"
+            class="full-width"
+            flat
+            to="/forgot-password"
+          />
+        </div>
       </div>
     </q-form>
   </q-page>

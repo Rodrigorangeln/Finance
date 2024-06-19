@@ -1,7 +1,7 @@
 <template>
   <q-page class="padding">
     <q-form class="row justify-center" @submit.prevent="handleRegister">
-      <p class="col-12 text-h5 text-center">Registro</p>
+      <p class="col-12 text-h5 text-center q-mt-md">Registro</p>
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-md">
         <q-input v-model="form.name" label="Nome" />
         <q-input v-model="form.email" label="Email" />
@@ -13,6 +13,15 @@
             class="full-width"
             flat
             type="submit"
+          />
+        </div>
+        <div>
+          <q-btn
+            label="Back to login"
+            color="black"
+            class="full-width"
+            flat
+            to="/login"
           />
         </div>
       </div>
