@@ -3,8 +3,20 @@
     <q-form class="row justify-center" @submit.prevent="handleSubmit">
       <p class="col-12 text-h5 text-center q-mt-md">Login</p>
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-md">
-        <q-input v-model="form.email" label="Email" />
-        <q-input v-model="form.password" label="Password" type="password" />
+        <q-input
+          v-model="form.email"
+          label="Email"
+          type="email"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+        />
+        <q-input
+          v-model="form.password"
+          label="Password"
+          type="password"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+        />
         <div class="q-pt-md">
           <q-btn
             label="Login"
@@ -42,6 +54,7 @@
 import { ref } from 'vue';
 import useAuthUser from 'src/composables/UseAuthUser';
 import { useRouter } from 'vue-router';
+import { Notify } from 'quasar';
 
 const { signIn } = useAuthUser();
 const router = useRouter();
@@ -53,13 +66,15 @@ const form = ref({
 
 const handleSubmit = async () => {
   try {
-    if (!form.value.email || !form.value.password) {
-      throw new Error('Please fill all fields');
-    }
     await signIn(form.value);
     router.replace({ name: 'me' });
   } catch (error: any) {
-    alert(error.message);
+    Notify.create({
+      message: error.message,
+      color: 'negative',
+      position: 'top',
+      timeout: 2000,
+    });
   }
 };
 </script>

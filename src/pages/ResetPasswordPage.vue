@@ -3,7 +3,13 @@
     <q-form class="row justify-center" @submit.prevent="handlePasswordReset">
       <p class="col-12 text-h5 text-center q-mt-md">Reset Password</p>
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-md">
-        <q-input v-model="password" label="Email" />
+        <q-input
+          v-model="password"
+          label="Email"
+          type="password"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+        />
         <div>
           <q-btn
             label="New password"
@@ -31,9 +37,6 @@ const router = useRouter();
 
 const handlePasswordReset = async () => {
   try {
-    if (!password.value) {
-      throw new Error('Please fill all fields');
-    }
     await resetPassword(password.value);
     router.push({ name: 'login' });
   } catch (error: any) {
