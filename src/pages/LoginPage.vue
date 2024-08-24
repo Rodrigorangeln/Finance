@@ -51,17 +51,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import useAuthUser from 'src/composables/UseAuthUser';
 import { useRouter } from 'vue-router';
 import { Notify } from 'quasar';
 
-const { signIn } = useAuthUser();
+const { signIn, isLoggedIn } = useAuthUser();
 const router = useRouter();
 
 const form = ref({
   email: '',
   password: '',
+});
+
+onMounted(() => {
+  if (isLoggedIn()) {
+    router.replace({ name: 'me' });
+  }
 });
 
 const handleSubmit = async () => {
